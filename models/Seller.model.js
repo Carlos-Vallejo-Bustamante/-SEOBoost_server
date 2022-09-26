@@ -7,9 +7,9 @@ const sellerSchema = new Schema(
         url: { type: String },
         price: { type: String },
         country: { type: String },
-        domainAuthority: { type: Number },
-        domainRef: { type: Number },
-        traffic: { type: Number },
+        domainAuthority: { type: String },
+        domainRef: { type: String },
+        traffic: { type: String },
     },
     {
         timestamps: true,

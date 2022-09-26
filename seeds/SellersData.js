@@ -19,7 +19,7 @@ mongoose
         );
     })
     .then(() => {
-        return SellerModel.insertMany(Conexoo, Linkatomic, Prensalink, Prensarank, Publisuites, Teblogueo, Triskelink);
+        return SellerModel.insertMany(Triskelink);
     })
     .then(() => {
         console.log('data created');
