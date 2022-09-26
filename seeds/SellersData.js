@@ -1,8 +1,13 @@
 require('dotenv/config');
 const mongoose = require('mongoose');
 const SellerModel = require('../models/Seller.model');
-const PrensarankData = require('./inputPrensarank.json');
-const TeblogueoData = require('./teblogueo');
+const Conexoo = require('./conexoo.json');
+const Linkatomic = require('./linkatomic.json');
+const Prensalink = require('./prensalink.json');
+const Prensarank = require('./prensarank.json');
+const Publisuites = require('./publisuites.json');
+const Teblogueo = require('./teblogueo.json');
+const Triskelink = require('./triskelink.json');
 
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/final-project';
 
@@ -14,7 +19,7 @@ mongoose
         );
     })
     .then(() => {
-        return SellerModel.insertMany(PrensarankData, TeblogueoData);
+        return SellerModel.insertMany(Conexoo, Linkatomic, Prensalink, Prensarank, Publisuites, Teblogueo, Triskelink);
     })
     .then(() => {
         console.log('data created');

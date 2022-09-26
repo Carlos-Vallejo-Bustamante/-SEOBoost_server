@@ -16,6 +16,6 @@ const sellerSchema = new Schema(
     }
 );
 
-const User = model("Seller", sellerSchema);
+const SellerModel = model("Seller", sellerSchema);
 
-module.exports = User;
+module.exports = SellerModel;
