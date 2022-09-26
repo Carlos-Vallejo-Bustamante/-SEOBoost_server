@@ -2,13 +2,14 @@ const { Schema, model } = require("mongoose");
 
 const sellerSchema = new Schema(
     {
-        nombre: { type: String },
-        nombre_href: { type: String },
-        precio: { type: String },
-        pais: { type: String },
-        autoridad: { type: Number },
-        dominiosDeRef: { type: Number },
-        trafico: { type: Number },
+        company: { type: String },
+        name: { type: String },
+        url: { type: String },
+        price: { type: String },
+        country: { type: String },
+        domainAuthority: { type: Number },
+        domainRef: { type: Number },
+        traffic: { type: Number },
     },
     {
         timestamps: true,
