@@ -23,7 +23,7 @@ const getOne = (req, res, next) => {
         UserModel
             .findById(id)
             .then((user) => {
-                res.status(200).json(user);
+                res.status(200).json({ token: signJwt(user._id.toString(), user.id) });
             })
             .catch(next);
     } catch (err) {
