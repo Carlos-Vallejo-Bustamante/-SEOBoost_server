@@ -13,8 +13,8 @@ class SeoService {
             data: '{"url":"https://tutekno.com","results":["metadata","links","images","content"]}'
         });
     }
-    getSearch(url) {
-        return this.axios.get(`/search?keywords=junior ${url}`).then((res) => res.data);
+    getSearch() {
+        return this.axios.get(`https://seo-audit1.p.rapidapi.com/audit`).then((res) => res.data);
     }
 }
 module.exports = SeoService;

@@ -2,12 +2,9 @@ const router = require('express').Router();
 
 
 const {
-    getAll,
+    getSearch,
 } = require('../controller/seller.controller');
-/**
- * GET
- */
-router.get('/', getAll);
 
+router.post('/', getSearch);
 
 module.exports = router;

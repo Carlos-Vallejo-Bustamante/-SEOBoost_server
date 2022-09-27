@@ -1,8 +1,6 @@
 const { isValidObjectId } = require('mongoose');
 const SellerModel = require('../models/Seller.model');
 
-
-
 const getAll = (req, res, next) => {
     SellerModel
         .find()
@@ -17,6 +15,9 @@ const getAll = (req, res, next) => {
 };
 
 
+
+
 module.exports = {
     getAll,
+    getSearch,
 };
