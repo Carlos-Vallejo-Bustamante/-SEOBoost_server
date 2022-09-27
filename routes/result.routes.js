@@ -3,7 +3,7 @@ const router = require('express').Router();
 
 const {
     getSearch,
-} = require('../controller/seller.controller');
+} = require('../controller/result.controller');
 
 router.post('/', getSearch);
 
