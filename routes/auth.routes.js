@@ -1,31 +1,26 @@
 const router = require('express').Router();
 
-const {
-    getAll,
-    getOne,
-    create,
-    updateOne,
-    deleteOne,
+const { LoginController, SignupController
 } = require('../controller/auth.controller');
 /**
  * GET
  */
-router.get('/', getAll);
-router.get('/:id', getOne);
+
 
 /**
  * POST
  */
-router.post('/', create);
+router.post('/signup', SignupController);
+router.post('/login', LoginController);
 
 /**
  * PUT
  */
-router.put('/:id', updateOne);
+
 
 /**
  * DELETE
  */
-router.delete('/:id', deleteOne);
+
 
 module.exports = router;

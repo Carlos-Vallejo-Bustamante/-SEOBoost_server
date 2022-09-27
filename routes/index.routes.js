@@ -9,5 +9,6 @@ router.get("/", (req, res, next) => {
 router.use("/seller", require("./seller.routes"));
 router.use("/auth", require("./auth.routes"));
 router.use("/result", require("./result.routes"));
+router.use("/user", require("./user.routes"));
 
 module.exports = router;

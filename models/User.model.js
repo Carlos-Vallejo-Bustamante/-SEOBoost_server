@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { ROLES, USER } = require('../const/user.const');
 const SALT = 10;
 

@@ -1,36 +1,11 @@
 const { isValidObjectId } = require('mongoose');
 const UserModel = require('../models/User.model');
+const { signJwt } = require('../utils/jwt.util')
+const bcrypt = require('bcryptjs')
+const SALT = 10
 
 
-const getAll = (req, res, next) => {
-    UserModel
-        .find()
-        .then((users) => {
-            res
-                .status(200)
-                .json({
-                    results: users,
-                });
-        })
-        .catch(next);
-};
-const getOne = (req, res, next) => {
-    try {
-        const { id } = req.params;
-        if (!isValidObjectId(id)) {
-            throw new Error('Error: Invalid mongo ID');
-        }
-        UserModel
-            .findById(id)
-            .then((user) => {
-                res.status(200).json({ token: signJwt(user._id.toString(), user.id) });
-            })
-            .catch(next);
-    } catch (err) {
-        res.status(400).json({ errorMessage: err.message });
-    }
-};
-const create = (req, res, next) => {
+const SignupController = (req, res, next) => {
     const {
         email,
         password,
@@ -63,69 +38,23 @@ const create = (req, res, next) => {
         })
         .catch(next);
 };
-const updateOne = (req, res, next) => {
-    try {
-        const { id } = req.params;
-        if (!isValidObjectId(id)) {
-            throw new Error('Error: Invalid mongo ID');
-        }
-        const {
-            email,
-            password,
-            role,
-            speciality,
-            yearsOfExperience,
-            name,
-            lastName,
-            linkedin,
-            avatar,
-            searches
-        } = req.body;
 
-        UserModel
-            .findByIdAndUpdate(id, {
-                email,
-                password,
-                role,
-                speciality,
-                yearsOfExperience,
-                name,
-                lastName,
-                linkedin,
-                avatar,
-                searches
-            }, { new: true })
-            .then((user) => {
-                res.json(user);
-                res.sendStatus(204);
-            })
-            .catch(next);
-    } catch (err) {
-        res.status(400).json({ errorMessage: err.message });
-    }
+const LoginController = (req, res, next) => {
+    const { email, password } = req.body;
+
+    UserModel.findOne({ email })
+        .then((user) => {
+            if (user && bcrypt.compareSync(password, user.password)) {
+                res.status(200).json({ token: signJwt(user._id.toString(), user.email) });
+            } else {
+                res.status(400).json({ errorMessage: 'Email o contraseña no valida.' });
+            }
+        })
+        .catch(next);
 };
-const deleteOne = (req, res, next) => {
-    try {
-        const { id } = req.params;
-        if (!isValidObjectId(id)) {
-            throw new Error('Error: Invalid mongo ID');
-        }
-        UserModel
-            .findByIdAndDelete(id)
-            .then(() => {
-                res.json('Deleted');
-                res.sendStatus(204);
-            })
-            .catch(next);
-    } catch (err) {
-        res.status(400).json({ errorMessage: err.message });
-    }
-};
+
 
 module.exports = {
-    getAll,
-    getOne,
-    create,
-    updateOne,
-    deleteOne,
+    SignupController,
+    LoginController
 };

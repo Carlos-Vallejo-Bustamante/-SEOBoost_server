@@ -17,6 +17,6 @@ const getSearch = (req, res, next) => {
 
 
 
-// module.exports = {
-//     getSearch,
-// };
+module.exports = {
+    getSearch,
+};
