@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require('bcrypt');
 const { ROLES, USER } = require('../const/user.const');
-const SALT = +process.env.SALT;
+const SALT = 10;
 
 const userSchema = new Schema(
   {
@@ -14,6 +14,7 @@ const userSchema = new Schema(
     lastName: { type: String, default: '' },
     linkedin: { type: String, default: '' },
     avatar: { type: String },
+    searches: [],
   },
   {
     timestamps: true,

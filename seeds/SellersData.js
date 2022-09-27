@@ -19,7 +19,9 @@ mongoose
         );
     })
     .then(() => {
-        return SellerModel.insertMany(Triskelink);
+        let allData = [...Linkatomic, ...Conexoo, ...Prensalink, ...Prensarank, ...Publisuites, ...Teblogueo, ...Triskelink]
+        console.log('PRIMERA DATA ========>', allData)
+        return SellerModel.insertMany(allData);
     })
     .then(() => {
         console.log('data created');

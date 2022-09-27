@@ -1,6 +1,7 @@
 const { isValidObjectId } = require('mongoose');
 const UserModel = require('../models/User.model');
 
+
 const getAll = (req, res, next) => {
     UserModel
         .find()
@@ -39,7 +40,8 @@ const create = (req, res, next) => {
         name,
         lastName,
         linkedin,
-        avatar
+        avatar,
+        searches
     } = req.body;
     console.log(req.body);
     UserModel
@@ -52,7 +54,8 @@ const create = (req, res, next) => {
             name,
             lastName,
             linkedin,
-            avatar
+            avatar,
+            searches
         })
         .then(() => {
             res.sendStatus(201);
@@ -75,7 +78,8 @@ const updateOne = (req, res, next) => {
             name,
             lastName,
             linkedin,
-            avatar
+            avatar,
+            searches
         } = req.body;
 
         UserModel
@@ -88,7 +92,8 @@ const updateOne = (req, res, next) => {
                 name,
                 lastName,
                 linkedin,
-                avatar
+                avatar,
+                searches
             }, { new: true })
             .then((user) => {
                 res.json(user);
