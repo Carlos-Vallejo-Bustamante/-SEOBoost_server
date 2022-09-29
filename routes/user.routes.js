@@ -7,6 +7,7 @@ const {
     deleteOne,
 } = require('../controller/user.controller');
 
+
 /**
  * GET
  */
@@ -27,5 +28,7 @@ router.put('/:id', updateOne);
  * DELETE
  */
 router.delete('/:id', deleteOne);
+
+
 
 module.exports = router;
