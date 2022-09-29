@@ -4,7 +4,7 @@ const seoData = new SeoService()
 
 const getSearch = (req, res, next) => {
     const result = req.body
-    console.log('aqui el analisis!!===>', result.url)
+    console.log('aqui el analisis!!===>', result)
     seoData.getSearch(result.url)
         .then((results) => {
             // console.log('ESTOY LLEGANDO A ESTA RUTA', results)
