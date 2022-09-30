@@ -2,8 +2,10 @@ const { isValidObjectId } = require('mongoose');
 const SellerModel = require('../models/Seller.model');
 
 const getAll = (req, res, next) => {
+    const { url } = req.body
+    console.log('AQUIII', url);
     SellerModel
-        .find()
+        .find({ url })
         .then((results) => {
             res
                 .status(200)

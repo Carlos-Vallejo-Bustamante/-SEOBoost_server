@@ -7,7 +7,7 @@ const {
 /**
  * GET
  */
-router.get('/', getAll);
+router.post('/', getAll);
 
 
 module.exports = router;
