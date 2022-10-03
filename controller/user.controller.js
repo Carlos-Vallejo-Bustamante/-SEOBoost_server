@@ -47,7 +47,8 @@ const updateOne = (req, res, next) => {
             lastName,
             linkedin,
             avatar,
-            searches
+            searches,
+            description
         } = req.body;
 
         UserModel
@@ -61,7 +62,8 @@ const updateOne = (req, res, next) => {
                 lastName,
                 linkedin,
                 avatar,
-                searches
+                searches,
+                description
             }, { new: true })
             .then((user) => {
                 res.json(user);
