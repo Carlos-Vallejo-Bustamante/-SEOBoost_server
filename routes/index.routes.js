@@ -12,5 +12,6 @@ router.use("/auth", require("./auth.routes"));
 router.use("/result", require("./result.routes"));
 router.use("/user", require("./user.routes"));
 router.use("/profile", validateToken, require("./profile.routes"));
+router.use("/keyword", require("./keyword.routes"));
 
 module.exports = router;

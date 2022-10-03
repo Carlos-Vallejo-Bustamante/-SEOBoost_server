@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 
 const {
-    getSearch,
+    getSearch
 } = require('../controller/result.controller');
 
 router.post('/', getSearch);

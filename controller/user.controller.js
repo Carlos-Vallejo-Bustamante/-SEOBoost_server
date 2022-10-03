@@ -33,8 +33,8 @@ const getOne = (req, res, next) => {
 
 const updateOne = (req, res, next) => {
     try {
-        const { id } = req.params;
-        if (!isValidObjectId(id)) {
+        const { _id } = req.user;
+        if (!isValidObjectId(_id)) {
             throw new Error('Error: Invalid mongo ID');
         }
         const {
@@ -47,7 +47,8 @@ const updateOne = (req, res, next) => {
             lastName,
             linkedin,
             avatar,
-            searches
+            searches,
+            description
         } = req.body;
 
         UserModel
@@ -61,7 +62,8 @@ const updateOne = (req, res, next) => {
                 lastName,
                 linkedin,
                 avatar,
-                searches
+                searches,
+                description
             }, { new: true })
             .then((user) => {
                 res.json(user);
