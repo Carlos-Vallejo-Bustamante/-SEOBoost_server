@@ -78,6 +78,29 @@ const updateOne = (req, res, next) => {
     }
 };
 
+const removeFavorite = (req, res, next) => {
+    try {
+        const { id } = req.params
+        if (!isValidObjectId(id)) {
+            throw new Error('Error: Invalid mongo ID');
+        }
+
+        const newData = req.body;
+
+        console.log(newData);
+
+        UserModel
+            .findByIdAndUpdate(id, { $pull: { searches: newData } }, { new: true })
+            .then((user) => {
+                res.json(user);
+                res.sendStatus(204);
+            })
+            .catch(next);
+    } catch (err) {
+        res.status(400).json({ errorMessage: err.message });
+    }
+};
+
 const addFavorite = (req, res, next) => {
     try {
         const { id } = req.params
@@ -122,5 +145,6 @@ module.exports = {
     getOne,
     updateOne,
     deleteOne,
-    addFavorite
+    addFavorite,
+    removeFavorite
 };
