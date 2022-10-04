@@ -5,6 +5,7 @@ const {
     getOne,
     updateOne,
     deleteOne,
+    addFavorite
 } = require('../controller/user.controller');
 
 
@@ -23,6 +24,7 @@ router.get('/:id', getOne);
  * PUT
  */
 router.put('/:id', updateOne);
+router.put('/addaudit/:id', addFavorite);
 
 /**
  * DELETE
