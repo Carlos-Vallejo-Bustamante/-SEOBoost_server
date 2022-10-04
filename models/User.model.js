@@ -14,7 +14,7 @@ const userSchema = new Schema(
     lastName: { type: String, default: '' },
     linkedin: { type: String, default: '' },
     description: { type: String, default: '' },
-    avatar: { type: String, default: '' },
+    avatar: { type: String, default: 'https://res.cloudinary.com/dj8ytkjbs/image/upload/v1664893578/avatar-default_vuwplf.png' },
     searches: [{ type: Object }],
     price: { type: String, default: '' }
   },
