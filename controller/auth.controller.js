@@ -15,7 +15,8 @@ const SignupController = (req, res, next) => {
         linkedin,
         avatar,
         searches,
-        description
+        description,
+        price
     } = req.body;
     UserModel.findOne({ email })
         .then((user) => {
@@ -23,7 +24,7 @@ const SignupController = (req, res, next) => {
                 throw new Error('Email ya en uso');
             }
             return UserModel.create({
-                email, password, role, speciality, yearsOfExperience, name, lastName, linkedin, avatar, searches, description
+                email, password, role, speciality, yearsOfExperience, name, lastName, linkedin, avatar, searches, description, price
             });
         })
         .then((user) => {

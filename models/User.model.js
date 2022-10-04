@@ -8,14 +8,15 @@ const userSchema = new Schema(
     email: { type: String },
     password: { type: String },
     role: { type: String, enum: ROLES, default: USER },
-    speciality: { type: String, enum: ['copywriter', 'analytics', 'linkbuilder', 'sxo', 'aso', 'sem', ''], default: '' },
+    speciality: { type: String, enum: ['Copywriter', 'Analytics', 'Linkbuilder', 'SXO', 'ASO', 'SEM', ''], default: '' },
     yearsOfExperience: { type: String, default: '' },
     name: { type: String, default: '' },
     lastName: { type: String, default: '' },
     linkedin: { type: String, default: '' },
     description: { type: String, default: '' },
     avatar: { type: String, default: '' },
-    searches: [],
+    searches: [{ type: Object }],
+    price: { type: String, default: '' }
   },
   {
     timestamps: true,

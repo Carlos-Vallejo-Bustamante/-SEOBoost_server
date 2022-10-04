@@ -14,6 +14,7 @@ const getAll = (req, res, next) => {
         })
         .catch(next);
 };
+
 const getOne = (req, res, next) => {
     try {
         const { id } = req.params;
@@ -33,8 +34,8 @@ const getOne = (req, res, next) => {
 
 const updateOne = (req, res, next) => {
     try {
-        const { _id } = req.user;
-        if (!isValidObjectId(_id)) {
+        const { id } = req.params;
+        if (!isValidObjectId(id)) {
             throw new Error('Error: Invalid mongo ID');
         }
         const {
@@ -48,7 +49,8 @@ const updateOne = (req, res, next) => {
             linkedin,
             avatar,
             searches,
-            description
+            description,
+            price
         } = req.body;
 
         UserModel
@@ -63,7 +65,8 @@ const updateOne = (req, res, next) => {
                 linkedin,
                 avatar,
                 searches,
-                description
+                description,
+                price
             }, { new: true })
             .then((user) => {
                 res.json(user);
@@ -74,6 +77,28 @@ const updateOne = (req, res, next) => {
         res.status(400).json({ errorMessage: err.message });
     }
 };
+
+const addFavorite = (req, res, next) => {
+    try {
+        const { id } = req.params
+        if (!isValidObjectId(id)) {
+            throw new Error('Error: Invalid mongo ID');
+        }
+
+        const newData = req.body;
+
+        UserModel
+            .findByIdAndUpdate(id, { $addToSet: { searches: newData } }, { new: true })
+            .then((user) => {
+                res.json(user);
+                res.sendStatus(204);
+            })
+            .catch(next);
+    } catch (err) {
+        res.status(400).json({ errorMessage: err.message });
+    }
+};
+
 const deleteOne = (req, res, next) => {
     try {
         const { id } = req.params;
@@ -97,4 +122,5 @@ module.exports = {
     getOne,
     updateOne,
     deleteOne,
+    addFavorite
 };
