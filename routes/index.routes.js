@@ -13,5 +13,6 @@ router.use("/result", require("./result.routes"));
 router.use("/user", require("./user.routes"));
 router.use("/profile", validateToken, require("./profile.routes"));
 router.use("/keyword", require("./keyword.routes"));
+router.use("/avatar", require("./avatar.routes"));
 
 module.exports = router;

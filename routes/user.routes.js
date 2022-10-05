@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const multerMiddleware = require('../middleware/multer.middleware')
+
 
 const {
     getAll,
@@ -6,7 +8,8 @@ const {
     updateOne,
     deleteOne,
     addFavorite,
-    removeFavorite
+    removeFavorite,
+    getAvatar
 } = require('../controller/user.controller');
 
 
@@ -25,6 +28,7 @@ router.get('/:id', getOne);
  * PUT
  */
 router.put('/:id', updateOne);
+router.put('/avatar/:id', multerMiddleware.single('avatar'), getAvatar);
 router.put('/addaudit/:id', addFavorite);
 router.put('/removeaudit/:id', removeFavorite);
 

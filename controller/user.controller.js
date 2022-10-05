@@ -2,6 +2,7 @@ const { isValidObjectId } = require('mongoose');
 const UserModel = require('../models/User.model');
 
 
+
 const getAll = (req, res, next) => {
     UserModel
         .find()
@@ -40,15 +41,12 @@ const updateOne = (req, res, next) => {
         }
         const {
             email,
-            password,
-            role,
             speciality,
             yearsOfExperience,
             name,
             lastName,
             linkedin,
             avatar,
-            searches,
             description,
             price
         } = req.body;
@@ -56,15 +54,12 @@ const updateOne = (req, res, next) => {
         UserModel
             .findByIdAndUpdate(id, {
                 email,
-                password,
-                role,
                 speciality,
                 yearsOfExperience,
                 name,
                 lastName,
                 linkedin,
                 avatar,
-                searches,
                 description,
                 price
             }, { new: true })
@@ -140,11 +135,22 @@ const deleteOne = (req, res, next) => {
     }
 };
 
+const getAvatar = (req, res) => {
+    try {
+        if (!req.file) { throw new Error('Image is not presented!'); }
+        console.log('AQUI RECIBE LA FOTO ============>', req.file);
+        return res.json({ message: 'Huraaaay' });
+    } catch (e) {
+        return res.status(422).send({ message: e.message })
+    }
+};
+
 module.exports = {
     getAll,
     getOne,
     updateOne,
     deleteOne,
     addFavorite,
-    removeFavorite
+    removeFavorite,
+    getAvatar
 };
